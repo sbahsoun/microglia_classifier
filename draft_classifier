@@ -26,7 +26,23 @@ for folder in os.listdir(train_path):
     x_train.append(img_arr)
     
 x_test = [] 
-
 for folder in os.listdir(test_path):
+  sub_path = test_path + "/" folder
+  for img in os.listdir(sub_path):
+    image_path = sub_path + "/" + img
+    img_arr = cv2.imread(image_path)
+    img_arr = cv2.resize(img_arr, (224, 224))
+    x_val.append(img_arr) 
+    
+ train_x = np.array(x_train)
+ test_x = np.array(x_test)
+ val_x = np.array(x_val)
+ 
+ train_datagen = ImageDataGenerator(rescale = 1./255)
+ test_datagen = ImageDataGenerator(rescale = 1./255)
+ val_datagen = ImageDataGenrator(rescale = 1./255)
+ 
+ training_set = train_dtagen.flow_from_directory(train_path, target_size = (224, 224), batch_size = 32, class_mode = 'sparse')
+ test_set = test_datagen.flow
 
 ***https://www.analyticsvidhya.com/blog/2021/07/step-by-step-guide-for-image-classification-on-custom-datasets/***
