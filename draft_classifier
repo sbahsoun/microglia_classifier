@@ -1,0 +1,32 @@
+from tensorflow.keras.layers import Input, Lamba, Dense, Flattern, Dropout
+from tensorflow.keras.models import Model
+from tensorflow.keras.applications.vgg19 import VGG19
+from tensorflow.keras.application.vgg19 import preprocess_input
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import Sequential
+
+import numpy as np
+import pandas as pd
+import os
+import cv2
+import matplotlib.pyplot s plt
+
+train_path = "rps-final-dataset/train"
+test_path = "rps-final-dataset/test"
+val_path = "rps-final-dataset/val"
+
+x_train=[]
+for folder in os.listdir(train_path):
+  sub_path = train_path + "/" + folder
+  for img in os.listdir(sub_path):
+    image_path = sub_path + "/" + img
+    img_arr = cv2.imread(image_path)
+    img_arr = cv2.resize(img_arr, (224,224))
+    x_train.append(img_arr)
+    
+x_test = [] 
+
+for folder in os.listdir(test_path):
+
+***https://www.analyticsvidhya.com/blog/2021/07/step-by-step-guide-for-image-classification-on-custom-datasets/***
